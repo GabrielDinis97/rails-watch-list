@@ -1,11 +1,16 @@
-<h1><%= @list.name %></h1>
-
+<div class="genre-h1 d-flex justify-content-around">
+  <h1><%= @list.name %></h1>
+  <%= link_to 'add a movie', new_list_bookmark_path(@list), class: 'btn btn-primary' %>
+</div>
 <ul>
   <% @list.movies.each do |movie| %>
+  <% bookmark = Bookmark.find_by(list: @list, movie: movie) %>
     <li>
+      <%= image_tag(movie.poster_url) %>
       <%= movie.title %>
       <p>overview: <%= movie.overview %></p>
       <p>rating: <%= movie.rating %></p>
+      <%= link_to 'delete', bookmark_path(bookmark), data: { turbo_method: :delete, turbo_confirm: 'are you sure?' },class: 'text-danger' %>
     </li>
   <% end %>
 </ul>
