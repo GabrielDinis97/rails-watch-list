@@ -1,4 +1,4 @@
-<h1>Movies</h1>
+<h1><%= @list.name %></h1>
 
 <ul>
   <% @list.movies.each do |movie| %>
@@ -9,3 +9,5 @@
     </li>
   <% end %>
 </ul>
+
+<%= link_to "Back to lists", lists_path, class: 'btn btn-primary' %>
